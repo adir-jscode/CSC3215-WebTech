@@ -16,7 +16,7 @@
 	?>
 
 	<?php 
-		echo "Car - unorderd ";
+		echo "Car - unorderd list ";
 		echo "<ul>";
 		foreach($cars as $key => $value) {
 			echo "<li>". $value['name'] . " - " . $value['country'] . " - " . $value['year'] ."</li>";
