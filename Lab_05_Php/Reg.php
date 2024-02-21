@@ -2,8 +2,6 @@
 
 if($_SERVER['REQUEST_METHOD'] === "POST")
 {
-    
-    
     if(!isset($_POST['fname']) || !isset($_POST['lname']) || !isset($_POST['faname']) || !isset($_POST['mname']) || !isset($_POST['bloods']) || !isset($_POST['religions']) || !isset($_POST['road']) || !isset($_POST['city']) || !isset($_POST['postcode']) || !isset($_POST['country']) || !isset($_POST['email']) || !isset($_POST['phone']) || !isset($_POST['website']) || !isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['cpassword']))
     {
         $firstName="";
@@ -93,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         $isValid = false;
     }
    
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $emailInvalidMsg = "Invalid email format";
         $isValid = false;
     }
@@ -102,7 +100,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         $isValid = false;
     }
     
-    if (!preg_match("/^(\+)?(88)?01[0-9]{9}$/",$phone)) {
+    elseif (!preg_match("/^(\+)?(88)?01[0-9]{9}$/",$phone)) {
         $phoneInvalidMsg = "Invalid phone format";
         $isValid = false;
     }
@@ -113,7 +111,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         $isValid = false;
     }
     
-    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+    elseif (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
         $websiteInvalidMsg = "Invalid website format";
         $isValid = false;
     }
@@ -153,7 +151,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
 <html>
 <body>
 <h1>Registration</h1>
-<form action="" method="post">
+<form action="" method="post" novalidate>
     <div class="table-1">
     <table>
          <tr>
@@ -168,7 +166,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
                                         <tr>
                                             <th><label for="fname">First name:</label></th>
                                             <td><input type="text" id="fname" name="fname"></td>
-                                            <br>
+                                            
                                             <td><?php echo $firstNameErrMsg ?? "" ?></td>
                                         </tr>
                                         <tr>
