@@ -7,6 +7,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $fatherName = $_POST['faname'];
     $motherName = $_POST['mname'];
     $blood = $_POST['bloods'];
+    $gender = $_POST['gender'];
     $religions = $_POST['religions'];
     $presentAddress = $_POST['road'] . "," . $_POST['city'] . " " . $_POST['postcode'] . "," . $_POST['country'];
     $email = $_POST['email'];
@@ -27,7 +28,40 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     else{
         $_SESSION['firstName'] = $firstName;
         $_SESSION['firstNameErrMsg'] = "";
+
     }
+
+    if(empty($presentAddress))
+    {
+        $_SESSION['presentAddressErrMsg'] = "Present Address is required";
+        $isValid = false;
+    }
+    else{
+        $_SESSION['presentAddress'] = $presentAddress;
+        $_SESSION['presentAddressErrMsg'] = "";
+    }
+
+    if(empty($gender))
+    {
+        $_SESSION['genderErrMsg'] = "Gender is Empty";
+        $isValid = false;
+    }
+    else{
+        $_SESSION['gender'] = $gender;
+        $_SESSION['genderErrMsg'] = "";
+    }
+
+    if(empty($blood))
+    {
+        $_SESSION['bloodErrMsg'] = "Blood Group is Empty";
+        $isValid = false;
+    }
+    else{
+        $_SESSION['bloods'] = $blood;
+        $_SESSION['bloodErrMsg'] = "";
+    }
+
+
     if(empty($LastName)){
         $_SESSION['LastNameErrMsg'] = "Last Name is required";
         $isValid = false;
@@ -151,10 +185,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     //     header("Location: ../views/Reg.php");
     // }
     if($isValid === true){
-        header("Location: Registration.php");
+        header("Location: ../Viewes/Registration.php");
     }
     else{
-        header("Location: Registration.php");
+        header("Location: ../Viewes/Registration.php");
     }
 
 }

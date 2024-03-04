@@ -3,7 +3,7 @@
 <html>
 <body>
 <h1>Registration</h1>
-<form action="Reg.php" method="post" novalidate >
+<form action="../Controllers/Reg.php" method="post" novalidate >
     <div class="table-1">
     <table>
          <tr>
@@ -17,7 +17,7 @@
                                     <table>
                                         <tr>
                                             <th><label for="fname">First name:</label></th>
-                                            <td><input type="text" id="fname" name="fname" value="<?php echo isset($_SESSION['FirstName']) ? $_SESSION['FirstName'] : ""; ?>">
+                                            <td><input type="text" id="fname" name="fname" value="<?php echo isset($_SESSION['firstName']) ? $_SESSION['firstName'] : ""; ?>">
                                             <?php echo isset($_SESSION['firstNameErrMsg']) ? $_SESSION['firstNameErrMsg'] : ""; ?>
                                         </td>
                                            
@@ -34,13 +34,13 @@
                                         <tr>
                                             <th><label for="gender">Gender:</label></th>
                                             <td>
-                                                <input type="radio" id="Male" name="male" value="Male">
+                                                <input type="radio" id="Male" name="gender" value="Male" <?php echo isset($_SESSION['gender']) && $_SESSION['gender'] === 'Male' ? 'checked' : ''; ?>>
                                                 <label for="Male">Male</label>
-                                                <input type="radio" id="Female" name="female" value="Female">
+                                                <input type="radio" id="Female" name="gender" value="Female" <?php echo isset($_SESSION['gender']) && $_SESSION['gender'] === 'Female' ? 'checked' : ''; ?>>
                                                 <label for="Female">Female</label>
                                             </td>
-                                            
                                         </tr>
+
                                         <tr>
                                             <th><label for="faname">Father's name:</label></th>
                                                 <td><input type="text" id="faname" name="faname" value="<?php echo isset($_SESSION['fatherName']) ? $_SESSION['fatherName'] : ""; ?>">
@@ -56,32 +56,31 @@
                                            
                                         </tr>
                                         <tr>
-                                            <th><label for="blood">Blood Group:</label></th>
-                                                <td>
-                                                    <select name="bloods" id="blood">
-                                                        <option value="A+">A+</option>
-                                                        <option value="Ab+">Ab+</option>
-                                                        <option value="B+">B+</option>
-                                                        <option value="O+">O+</option>
-                                                      </select>
-                                                      <?php echo isset($_SESSION['bloodErrMsg']) ? $_SESSION['bloodErrMsg'] : ""; ?>
-                                                </td>
-                                                
-                                        </tr>
+                                        <th><label for="blood">Blood Group:</label></th>
+                                        <td>
+                                            <select name="bloods" id="blood">
+                                                <option value="A+" <?php echo isset($_SESSION['bloods']) && $_SESSION['bloods'] === 'A+' ? 'selected' : ''; ?>>A+</option>
+                                                <option value="Ab+" <?php echo isset($_SESSION['bloods']) && $_SESSION['bloods'] === 'Ab+' ? 'selected' : ''; ?>>Ab+</option>
+                                                <option value="B+" <?php echo isset($_SESSION['bloods']) && $_SESSION['bloods'] === 'B+' ? 'selected' : ''; ?>>B+</option>
+                                                <option value="O+" <?php echo isset($_SESSION['bloods']) && $_SESSION['bloods'] === 'O+' ? 'selected' : ''; ?>>O+</option>
+                                            </select>
+                                            <?php echo isset($_SESSION['bloodErrMsg']) ? $_SESSION['bloodErrMsg'] : ""; ?>
+                                        </td>
+                                    </tr>
 
-                                        <tr>
-                                            <th><label for="religion">Religion:</label></th>
-                                                <td>
-                                                    <select name="religions" id="religion">
-                                                    <option value="Islam">Islam</option>
-                                                    <option value="Hindu">Hindu</option>
-                                                    <option value="Others">Others</option>
-                                                    
-                                                  </select>
-                                                  <?php echo isset($_SESSION['religionsErrMsg']) ? $_SESSION['religionsErrMsg'] : ""; ?>
-                                                </td>
-                                                
-                                        </tr>
+
+                                    <tr>
+    <th><label for="religion">Religion:</label></th>
+    <td>
+        <select name="religions" id="religion">
+            <option value="Islam" <?php echo isset($_SESSION['religions']) && $_SESSION['religions'] === 'Islam' ? 'selected' : ''; ?>>Islam</option>
+            <option value="Hindu" <?php echo isset($_SESSION['religions']) && $_SESSION['religions'] === 'Hindu' ? 'selected' : ''; ?>>Hindu</option>
+            <option value="Others" <?php echo isset($_SESSION['religions']) && $_SESSION['religions'] === 'Others' ? 'selected' : ''; ?>>Others</option>
+        </select>
+        <?php echo isset($_SESSION['religionsErrMsg']) ? $_SESSION['religionsErrMsg'] : ""; ?>
+    </td>
+</tr>
+
                                           
                                           
                                           
@@ -140,8 +139,9 @@
                                                    
                                                     <br>
                                                     <br>
-                                                    <textarea id="road" name="road" rows="4" cols="50" placeholder="Road/Street/City" value="<?php echo isset($_SESSION['road']) ? $_SESSION['road'] : ""; ?>"></textarea>
-                                                    <?php echo isset($_SESSION['roadErrMsg']) ? $_SESSION['roadErrMsg'] : ""; ?>
+                                                    <textarea id="road" name="road" rows="4" cols="50" placeholder="Road/Street/City"><?php echo isset($_SESSION['presentAddress']) ? $_SESSION['presentAddress'] : ""; ?></textarea>
+
+                                                    <?php echo isset($_SESSION['presentAddressErrMsg']) ? $_SESSION['presentAddressErrMsg'] : ""; ?>
                                                     <br>
                                                     <input type="text" id="postcode" name="postcode" placeholder="Post Code" value="<?php echo isset($_SESSION['postcode']) ? $_SESSION['postcode'] : ""; ?>"></td>
                                                     <?php echo isset($_SESSION['postcodeErrMsg']) ? $_SESSION['postcodeErrMsg'] : ""; ?>
