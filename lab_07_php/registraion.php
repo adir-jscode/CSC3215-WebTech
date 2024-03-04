@@ -5,7 +5,9 @@
 <h1>Registration</h1>
 <form action="Reg.php" method="post" novalidate >
     <div class="table-1">
-    <p>Last Modified: <?php echo isset($_COOKIE['lastModified']) ? $_COOKIE['lastModified'] : ""; ?></p>
+    <span>
+   <b> Last Modified On: </b> <?php echo isset($_COOKIE['lastModified']) ? $_COOKIE['lastModified'] : ""; ?>
+    </span>
     <table>
          <tr>
             <td>
@@ -35,7 +37,7 @@
                                         <tr>
                                             <th><label for="gender">Gender:</label></th>
                                             <td>
-                                                <input type="radio" id="Male" name="male" value="Male">
+                                                <input type="radio" id="Male" name="male" value="<?php echo isset($_COOKIE['LastName']) ? $_COOKIE['LastName'] : ""; ?>">
                                                 <label for="Male">Male</label>
                                                 <input type="radio" id="Female" name="female" value="Female">
                                                 <label for="Female">Female</label>

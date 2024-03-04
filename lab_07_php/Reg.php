@@ -7,6 +7,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     $LastName = $_POST['lname'];
     $fatherName = $_POST['faname'];
     $motherName = $_POST['mname'];
+    $gender = $_POST['gender'];
     $blood = $_POST['bloods'];
     $religions = $_POST['religions'];
     $presentAddress = $_POST['road'] . "," . $_POST['city'] . " " . $_POST['postcode'] . "," . $_POST['country'];
