@@ -185,10 +185,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     //     header("Location: ../views/Reg.php");
     // }
     if($isValid === true){
-        header("Location: ../Viewes/Registration.php");
+        header("Location: ../Views/Registration.php");
     }
     else{
-        header("Location: ../Viewes/Registration.php");
+        header("Location: ../Views/Registration.php");
     }
 
 }

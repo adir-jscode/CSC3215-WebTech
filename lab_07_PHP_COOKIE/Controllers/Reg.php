@@ -40,6 +40,21 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         setcookie("LastName",$LastName,time()+60*60*24*30,"/");
         $_SESSION['LastNameErrMsg'] = "";
     }
+
+    if(empty($gender)){
+        $_SESSION['genderErrMsg'] = "Gender is required";
+       
+        $isValid = false;
+    }
+    else
+    {
+        $_SESSION['gender'] = $gender;
+        setcookie("gender",$gender,time()+60*60*24*30,"/");
+        $_SESSION['genderErrMsg'] = "";
+    }
+
+
+
     if(empty($fatherName)){
         $_SESSION['fatherNameErrMsg'] = "Father Name is required";
         $isValid = false;
@@ -162,19 +177,18 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         $_SESSION['postcodeErrMsg'] = "";
     }
     if(isset($_POST['saveDraft'])) {
-        //use cookie
-        //utc +6 
+       
         date_default_timezone_set('Asia/Dhaka');
         $_SESSION['lastModified'] = date("Y-m-d H:i:s"); 
         setcookie("lastModified", $_SESSION['lastModified'], time()+60*60*24*30, "/"); 
-        header("Location: registraion.php"); 
+        header("Location: ../Views/Registration.php"); 
         exit(); 
     }
     if($isValid === true){
-        header("Location: registraion.php");
+        header("Location: ../Views/Registration.php");
     }
     else{
-        header("Location: registraion.php");
+        header("Location: ../Views/Registration.php");
     }
 
 }

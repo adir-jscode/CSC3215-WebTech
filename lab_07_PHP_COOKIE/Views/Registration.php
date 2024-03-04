@@ -3,10 +3,10 @@
 <html>
 <body>
 <h1>Registration</h1>
-<form action="Reg.php" method="post" novalidate >
+<form action="../Controllers/Reg.php" method="post" novalidate >
     <div class="table-1">
     <span>
-   <b> Last Modified On: </b> <?php echo isset($_COOKIE['lastModified']) ? $_COOKIE['lastModified'] : ""; ?>
+   <b> Last Modified On:  <?php echo isset($_COOKIE['lastModified']) ? $_COOKIE['lastModified'] : ""; ?> </b>
     </span>
     <table>
          <tr>
@@ -37,13 +37,13 @@
                                         <tr>
                                             <th><label for="gender">Gender:</label></th>
                                             <td>
-                                                <input type="radio" id="Male" name="male" value="<?php echo isset($_COOKIE['LastName']) ? $_COOKIE['LastName'] : ""; ?>">
+                                                <input type="radio" id="Male" name="gender" value="Male" <?php echo isset($_COOKIE['gender']) && $_COOKIE['gender'] === 'Male' ? 'checked' : ''; ?>>
                                                 <label for="Male">Male</label>
-                                                <input type="radio" id="Female" name="female" value="Female">
+                                                <input type="radio" id="Female" name="gender" value="Female" <?php echo isset($_COOKIE['gender']) && $_COOKIE['gender'] === 'Female' ? 'checked' : ''; ?>>
                                                 <label for="Female">Female</label>
                                             </td>
-                                            
                                         </tr>
+
                                         <tr>
                                             <th><label for="faname">Father's name:</label></th>
                                                 <td><input type="text" id="faname" name="faname"  value="<?php echo isset($_COOKIE['fatherName']) ? $_COOKIE['fatherName'] : ""; ?>">
@@ -62,10 +62,10 @@
                                             <th><label for="blood">Blood Group:</label></th>
                                                 <td>
                                                     <select name="bloods" id="blood">
-                                                        <option value="A+">A+</option>
-                                                        <option value="Ab+">Ab+</option>
-                                                        <option value="B+">B+</option>
-                                                        <option value="O+">O+</option>
+                                                        <option value="A+" <?php echo isset($_COOKIE['blood']) && $_SESSION['blood'] === 'A+' ? 'selected' : ''; ?>>A+</option>
+                                                        <option value="Ab+" <?php echo isset($_COOKIE['blood']) && $_SESSION['blood'] === 'Ab+' ? 'selected' : ''; ?>>Ab+</option>
+                                                        <option value="B+" <?php echo isset($_COOKIE['blood']) && $_SESSION['blood'] === 'B+' ? 'selected' : ''; ?>>B+</option>
+                                                        <option value="O+" <?php echo isset($_COOKIE['blood']) && $_SESSION['blood'] === ')+' ? 'selected' : ''; ?>>O+</option>
                                                       </select>
                                                       <?php echo isset($_SESSION['bloodErrMsg']) ? $_SESSION['bloodErrMsg'] : ""; ?>
                                                 </td>
@@ -76,9 +76,9 @@
                                             <th><label for="religion">Religion:</label></th>
                                                 <td>
                                                     <select name="religions" id="religion">
-                                                    <option value="Islam">Islam</option>
-                                                    <option value="Hindu">Hindu</option>
-                                                    <option value="Others">Others</option>
+                                                    <option value="Islam" <?php echo isset($_COOKIE['religions']) && $_SESSION['religions'] === 'Islam' ? 'selected' : ''; ?>>Islam</option>
+                                                    <option value="Hindu" <?php echo isset($_COOKIE['religions']) && $_SESSION['religions'] === 'Hindu' ? 'selected' : ''; ?>>Hindu</option>
+                                                    <option value="Others" <?php echo isset($_COOKIE['religions']) && $_SESSION['religions'] === 'Others' ? 'selected' : ''; ?>>Others</option>
                                                     
                                                   </select>
                                                   <?php echo isset($_SESSION['religionsErrMsg']) ? $_SESSION['religionsErrMsg'] : ""; ?>
@@ -143,8 +143,8 @@
                                                    
                                                     <br>
                                                     <br>
-                                                    <textarea id="road" name="road" rows="4" cols="50" placeholder="Road/Street/City"value="<?php echo isset($_COOKIE['road']) ? $_COOKIE['road'] : ""; ?>"></textarea>
-                                                    <?php echo isset($_SESSION['roadErrMsg']) ? $_SESSION['roadErrMsg'] : ""; ?>
+                                                    <textarea id="road" name="road" rows="4" cols="50" placeholder="Road/Street/City"><?php echo isset($_COOKIE['presentAddress']) ? $_COOKIE['presentAddress'] : ""; ?></textarea>
+                                                    <?php echo isset($_SESSION['presentAddressErrMsg']) ? $_SESSION['presentAddressErrMsg'] : ""; ?>
                                                     <br>
                                                     <input type="text" id="postcode" name="postcode" placeholder="Post Code" value="<?php echo isset($_COOKIE['postcode']) ? $_COOKIE['postcode'] : ""; ?>"></td>
                                                     <?php echo isset($_SESSION['postcodeErrMsg']) ? $_SESSION['postcodeErrMsg'] : ""; ?>
@@ -222,15 +222,6 @@
 </div>
     
 </form>   
-
-    
-    
-    
-
-
-
-
-
 
 
 <!-- <table>
